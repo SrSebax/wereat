@@ -38,8 +38,12 @@ class AppTheme {
           foregroundColor: AppColors.coral50,
           disabledBackgroundColor: AppColors.coral200,
           disabledForegroundColor: AppColors.coral50,
-          minimumSize: const Size.fromHeight(48),
-          textStyle: textTheme.labelLarge,
+          minimumSize: const Size.fromHeight(52),
+          elevation: 6,
+          shadowColor: AppColors.coral400.withValues(alpha: 0.35),
+          textStyle: textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.pill),
           ),
@@ -49,8 +53,8 @@ class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.gray900,
           disabledForegroundColor: AppColors.gray400,
+          minimumSize: const Size.fromHeight(52),
           side: const BorderSide(color: AppColors.gray200),
-          minimumSize: const Size.fromHeight(48),
           textStyle: textTheme.labelLarge,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppRadius.pill),
@@ -66,8 +70,10 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 12,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.input),
           borderSide: const BorderSide(color: AppColors.gray200, width: 0.5),

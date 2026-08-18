@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wereat/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:wereat/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:wereat/features/auth/domain/repositories/auth_repository.dart';
+import 'package:wereat/features/auth/domain/usecases/register_with_email_password.dart';
+import 'package:wereat/features/auth/domain/usecases/send_password_reset_email.dart';
 import 'package:wereat/features/auth/domain/usecases/sign_in_with_email_password.dart';
 import 'package:wereat/features/auth/domain/usecases/sign_in_with_google.dart';
 import 'package:wereat/features/auth/domain/usecases/sign_out.dart';
@@ -12,14 +14,18 @@ final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
 });
 
 final authRemoteDataSourceProvider = Provider<AuthRemoteDataSource>((ref) {
-  return AuthRemoteDataSourceImpl(firebaseAuth: ref.watch(firebaseAuthProvider));
+  return AuthRemoteDataSourceImpl(
+    firebaseAuth: ref.watch(firebaseAuthProvider),
+  );
 });
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepositoryImpl(ref.watch(authRemoteDataSourceProvider));
 });
 
-final signInWithEmailPasswordProvider = Provider<SignInWithEmailPassword>((ref) {
+final signInWithEmailPasswordProvider = Provider<SignInWithEmailPassword>((
+  ref,
+) {
   return SignInWithEmailPassword(ref.watch(authRepositoryProvider));
 });
 
@@ -29,6 +35,16 @@ final signInWithGoogleProvider = Provider<SignInWithGoogle>((ref) {
 
 final signOutProvider = Provider<SignOut>((ref) {
   return SignOut(ref.watch(authRepositoryProvider));
+});
+
+final registerWithEmailPasswordProvider = Provider<RegisterWithEmailPassword>((
+  ref,
+) {
+  return RegisterWithEmailPassword(ref.watch(authRepositoryProvider));
+});
+
+final sendPasswordResetEmailProvider = Provider<SendPasswordResetEmail>((ref) {
+  return SendPasswordResetEmail(ref.watch(authRepositoryProvider));
 });
 
 /// Emite el usuario autenticado actual (o null) en tiempo real.

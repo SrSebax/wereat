@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wereat/core/theme/app_colors.dart';
+import 'package:wereat/core/theme/app_radius.dart';
 import 'package:wereat/core/theme/app_spacing.dart';
 import 'package:wereat/core/utils/validators.dart';
-import 'package:wereat/core/widgets/wereat_logo.dart';
 import 'package:wereat/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:wereat/features/auth/presentation/pages/register_page.dart';
 import 'package:wereat/features/auth/presentation/providers/login_controller.dart';
 import 'package:wereat/features/auth/presentation/widgets/auth_text_field.dart';
+import 'package:wereat/features/auth/presentation/widgets/button_spinner.dart';
+import 'package:wereat/features/auth/presentation/widgets/error_banner.dart';
+import 'package:wereat/features/auth/presentation/widgets/google_logo.dart';
+import 'package:wereat/features/auth/presentation/widgets/login_header.dart';
 import 'package:wereat/features/map/presentation/pages/map_page.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
@@ -31,7 +35,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   void _submitEmailAndPassword() {
     if (!_formKey.currentState!.validate()) return;
-    ref.read(loginControllerProvider.notifier).signInWithEmailAndPassword(
+    ref
+        .read(loginControllerProvider.notifier)
+        .signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text,
         );
@@ -47,147 +53,182 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       next.whenOrNull(
         data: (user) {
           if (user == null) return;
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const MapPage()),
-          );
+          Navigator.of(
+            context,
+          ).pushReplacement(MaterialPageRoute(builder: (_) => const MapPage()));
         },
       );
     });
 
     final loginState = ref.watch(loginControllerProvider);
     final isLoading = loginState.isLoading;
-    final errorMessage = loginState.hasError ? loginState.error.toString() : null;
+    final errorMessage = loginState.hasError
+        ? loginState.error.toString()
+        : null;
+    final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
+      backgroundColor: AppColors.cream,
       body: SafeArea(
+        top: false,
+        bottom: false,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.lg,
-            vertical: 32,
-          ),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 24),
-                const Center(child: WereatLogo()),
-                const SizedBox(height: 8),
-                Text(
-                  'Todos tus lugares favoritos, en un solo mapa.',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(color: AppColors.gray600),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const LoginHeader(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  0,
+                  AppSpacing.lg,
+                  32,
                 ),
-                const SizedBox(height: 40),
-                if (errorMessage != null) ...[
-                  _ErrorBanner(message: errorMessage),
-                  const SizedBox(height: AppSpacing.lg),
-                ],
-                AuthTextField(
-                  controller: _emailController,
-                  label: 'Email',
-                  keyboardType: TextInputType.emailAddress,
-                  autofillHints: const [AutofillHints.email],
-                  enabled: !isLoading,
-                  validator: Validators.email,
-                ),
-                const SizedBox(height: AppSpacing.md),
-                AuthTextField(
-                  controller: _passwordController,
-                  label: 'Contraseña',
-                  obscureText: true,
-                  autofillHints: const [AutofillHints.password],
-                  enabled: !isLoading,
-                  validator: Validators.password,
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: isLoading
-                        ? null
-                        : () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const ForgotPasswordPage(),
-                              ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Transform.translate(
+                      offset: const Offset(0, -32),
+                      child: Container(
+                        padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(
+                            AppRadius.card * 1.5,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.gray900.withValues(alpha: 0.10),
+                              blurRadius: 28,
+                              offset: const Offset(0, 12),
                             ),
-                    child: const Text('Olvidé mi contraseña'),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                ElevatedButton(
-                  onPressed: isLoading ? null : _submitEmailAndPassword,
-                  child: isLoading
-                      ? const _ButtonSpinner(color: AppColors.coral50)
-                      : const Text('Iniciar sesión'),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                OutlinedButton(
-                  onPressed: isLoading ? null : _submitGoogle,
-                  child: isLoading
-                      ? const _ButtonSpinner(color: AppColors.gray600)
-                      : const Text('Continuar con Google'),
-                ),
-                const SizedBox(height: AppSpacing.lg),
-                Center(
-                  child: TextButton(
-                    onPressed: isLoading
-                        ? null
-                        : () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const RegisterPage(),
+                          ],
+                        ),
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                'Iniciar sesión',
+                                style: textTheme.titleLarge,
                               ),
-                            ),
-                    child: const Text('¿No tenés cuenta? Registrate'),
-                  ),
+                              const SizedBox(height: 4),
+                              const SizedBox(height: AppSpacing.lg),
+                              if (errorMessage != null) ...[
+                                ErrorBanner(message: errorMessage),
+                                const SizedBox(height: AppSpacing.lg),
+                              ],
+                              AuthTextField(
+                                controller: _emailController,
+                                label: 'Email',
+                                icon: Icons.mail_outline,
+                                keyboardType: TextInputType.emailAddress,
+                                autofillHints: const [AutofillHints.email],
+                                enabled: !isLoading,
+                                validator: Validators.email,
+                              ),
+                              const SizedBox(height: AppSpacing.md),
+                              AuthTextField(
+                                controller: _passwordController,
+                                label: 'Contraseña',
+                                icon: Icons.lock_outline,
+                                obscureText: true,
+                                autofillHints: const [AutofillHints.password],
+                                enabled: !isLoading,
+                                validator: Validators.password,
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(
+                                  onPressed: isLoading
+                                      ? null
+                                      : () => Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (_) =>
+                                                const ForgotPasswordPage(),
+                                          ),
+                                        ),
+                                  child: const Text(
+                                    '¿Olvidaste tu contraseña?',
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: AppSpacing.sm),
+                              ElevatedButton(
+                                onPressed: isLoading
+                                    ? null
+                                    : _submitEmailAndPassword,
+                                child: isLoading
+                                    ? const ButtonSpinner(
+                                        color: AppColors.coral50,
+                                      )
+                                    : const Text('Iniciar sesión'),
+                              ),
+                              const SizedBox(height: AppSpacing.lg),
+                              Row(
+                                children: [
+                                  const Expanded(
+                                    child: Divider(color: AppColors.gray100),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                    ),
+                                    child: Text(
+                                      'o',
+                                      style: textTheme.bodySmall?.copyWith(
+                                        color: AppColors.gray400,
+                                      ),
+                                    ),
+                                  ),
+                                  const Expanded(
+                                    child: Divider(color: AppColors.gray100),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: AppSpacing.lg),
+                              OutlinedButton(
+                                onPressed: isLoading ? null : _submitGoogle,
+                                child: isLoading
+                                    ? const ButtonSpinner(
+                                        color: AppColors.gray600,
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const GoogleLogo(),
+                                          const SizedBox(width: 10),
+                                          const Text('Continuar con Google'),
+                                        ],
+                                      ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                    Center(
+                      child: TextButton(
+                        onPressed: isLoading
+                            ? null
+                            : () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const RegisterPage(),
+                                ),
+                              ),
+                        child: const Text('¿No tienes cuenta? Registrate'),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class _ErrorBanner extends StatelessWidget {
-  const _ErrorBanner({required this.message});
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(AppSpacing.md),
-      decoration: BoxDecoration(
-        color: AppColors.coral50,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Text(
-        message,
-        style: Theme.of(context)
-            .textTheme
-            .bodySmall
-            ?.copyWith(color: AppColors.coral600),
-      ),
-    );
-  }
-}
-
-class _ButtonSpinner extends StatelessWidget {
-  const _ButtonSpinner({required this.color});
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20,
-      width: 20,
-      child: CircularProgressIndicator(strokeWidth: 2, color: color),
     );
   }
 }

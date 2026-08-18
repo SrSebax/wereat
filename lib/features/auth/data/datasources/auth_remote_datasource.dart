@@ -12,12 +12,20 @@ abstract class AuthRemoteDataSource {
 
   Future<AppUserModel> signInWithGoogle();
 
+  Future<AppUserModel> registerWithEmailAndPassword({
+    required String name,
+    required String email,
+    required String password,
+  });
+
+  Future<void> sendPasswordResetEmail({required String email});
+
   Future<void> signOut();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl({FirebaseAuth? firebaseAuth})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+    : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
@@ -41,7 +49,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
       final user = credential.user;
       if (user == null) {
-        throw const AuthException('No pudimos iniciar tu sesión. Probá de nuevo.');
+        throw const AuthException(
+          'No pudimos iniciar tu sesión. Probá de nuevo.',
+        );
       }
       return AppUserModel.fromFirebaseUser(user);
     } on FirebaseAuthException catch (e) {
@@ -67,14 +77,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final authorizationClient = googleUser.authorizationClient;
       final authorization =
           await authorizationClient.authorizationForScopes(['email']) ??
-              await authorizationClient.authorizeScopes(['email']);
+          await authorizationClient.authorizeScopes(['email']);
 
       final credential = GoogleAuthProvider.credential(
         accessToken: authorization.accessToken,
         idToken: idToken,
       );
 
-      final userCredential = await _firebaseAuth.signInWithCredential(credential);
+      final userCredential = await _firebaseAuth.signInWithCredential(
+        credential,
+      );
       final user = userCredential.user;
       if (user == null) {
         throw const AuthException('No pudimos iniciar tu sesión con Google.');
@@ -84,6 +96,43 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       throw AuthException(_messageFor(e.code));
     } on GoogleSignInException catch (e) {
       throw AuthException(_messageForGoogle(e.code));
+    }
+  }
+
+  @override
+  Future<AppUserModel> registerWithEmailAndPassword({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      final user = credential.user;
+      if (user == null) {
+        throw const AuthException(
+          'No pudimos crear tu cuenta. Probá de nuevo.',
+        );
+      }
+      await user.updateDisplayName(name);
+      return AppUserModel(
+        id: user.uid,
+        email: user.email ?? email,
+        displayName: name,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw AuthException(_messageFor(e.code));
+    }
+  }
+
+  @override
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw AuthException(_messageFor(e.code));
     }
   }
 
@@ -99,8 +148,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   /// aparte vía meta tag): se abre el popup de Google directo con Firebase Auth.
   Future<AppUserModel> _signInWithGooglePopup() async {
     try {
-      final userCredential =
-          await _firebaseAuth.signInWithPopup(GoogleAuthProvider());
+      final userCredential = await _firebaseAuth.signInWithPopup(
+        GoogleAuthProvider(),
+      );
       final user = userCredential.user;
       if (user == null) {
         throw const AuthException('No pudimos iniciar tu sesión con Google.');
@@ -140,6 +190,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         return 'Ese email ya está registrado con otro método de inicio de sesión.';
       case 'operation-not-allowed':
         return 'Este método de inicio de sesión no está habilitado.';
+      case 'email-already-in-use':
+        return 'Ya existe una cuenta con ese email.';
+      case 'weak-password':
+        return 'Esa contraseña es muy débil. Probá con una más segura.';
       case 'popup-closed-by-user':
       case 'cancelled-popup-request':
         return 'Cancelaste el inicio de sesión con Google.';

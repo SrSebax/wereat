@@ -14,10 +14,7 @@ class WereatLogo extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SvgPicture.asset(
-          'assets/branding/wereat-isotype.svg',
-          height: height,
-        ),
+        SvgPicture.asset('assets/branding/wereat-isotype.svg', height: height),
         const SizedBox(width: 10),
         Text(
           'wereat',

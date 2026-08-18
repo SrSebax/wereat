@@ -4,25 +4,30 @@ import 'package:wereat/core/usecases/usecase.dart';
 import 'package:wereat/features/auth/domain/entities/app_user.dart';
 import 'package:wereat/features/auth/domain/repositories/auth_repository.dart';
 
-class SignInWithEmailPasswordParams {
-  const SignInWithEmailPasswordParams({
+class RegisterWithEmailPasswordParams {
+  const RegisterWithEmailPasswordParams({
+    required this.name,
     required this.email,
     required this.password,
   });
 
+  final String name;
   final String email;
   final String password;
 }
 
-class SignInWithEmailPassword
-    implements UseCase<AppUser, SignInWithEmailPasswordParams> {
-  const SignInWithEmailPassword(this.repository);
+class RegisterWithEmailPassword
+    implements UseCase<AppUser, RegisterWithEmailPasswordParams> {
+  const RegisterWithEmailPassword(this.repository);
 
   final AuthRepository repository;
 
   @override
-  Future<Either<Failure, AppUser>> call(SignInWithEmailPasswordParams params) {
-    return repository.signInWithEmailAndPassword(
+  Future<Either<Failure, AppUser>> call(
+    RegisterWithEmailPasswordParams params,
+  ) {
+    return repository.registerWithEmailAndPassword(
+      name: params.name,
       email: params.email,
       password: params.password,
     );

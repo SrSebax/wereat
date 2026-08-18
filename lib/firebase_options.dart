@@ -59,8 +59,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '339173468227',
     projectId: 'wereat-app',
     storageBucket: 'wereat-app.firebasestorage.app',
-    androidClientId: '339173468227-dr31o5p0tfsomvo9567o53cjmbon5a7l.apps.googleusercontent.com',
-    iosClientId: '339173468227-b50vfe5rrcoqipjvhf47b0c89oa36atq.apps.googleusercontent.com',
+    androidClientId:
+        '339173468227-dr31o5p0tfsomvo9567o53cjmbon5a7l.apps.googleusercontent.com',
+    iosClientId:
+        '339173468227-b50vfe5rrcoqipjvhf47b0c89oa36atq.apps.googleusercontent.com',
     iosBundleId: 'com.wereat.app',
   );
   static const FirebaseOptions web = FirebaseOptions(

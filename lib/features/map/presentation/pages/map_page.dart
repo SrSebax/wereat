@@ -11,9 +11,9 @@ class MapPage extends ConsumerWidget {
     final result = await ref.read(signOutProvider)(const NoParams());
     if (!context.mounted) return;
     result.fold(
-      (failure) => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(failure.message)),
-      ),
+      (failure) => ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(failure.message))),
       (_) {},
     );
   }

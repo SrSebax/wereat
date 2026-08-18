@@ -14,9 +14,8 @@ class AuthGate extends ConsumerWidget {
 
     return authState.when(
       data: (user) => user == null ? const LoginPage() : const MapPage(),
-      loading: () => const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      ),
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (error, stackTrace) => const LoginPage(),
     );
   }
