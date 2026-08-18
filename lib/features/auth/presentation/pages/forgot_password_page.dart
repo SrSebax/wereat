@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wereat/core/theme/app_colors.dart';
 import 'package:wereat/core/theme/app_spacing.dart';
 import 'package:wereat/core/utils/validators.dart';
@@ -64,7 +65,7 @@ class _ForgotPasswordPageState extends ConsumerState<ForgotPasswordPage> {
               ),
               const SizedBox(height: AppSpacing.lg),
               OutlinedButton(
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: () => context.pop(),
                 child: const Text('Volver a iniciar sesión'),
               ),
             ]

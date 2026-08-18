@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wereat/core/constants/app_constants.dart';
+import 'package:wereat/core/router/app_router.dart';
 import 'package:wereat/core/theme/app_theme.dart';
-import 'package:wereat/features/auth/presentation/pages/auth_gate.dart';
 import 'package:wereat/firebase_options.dart';
 
 void main() async {
@@ -12,16 +12,17 @@ void main() async {
   runApp(const ProviderScope(child: WereatApp()));
 }
 
-class WereatApp extends StatelessWidget {
+class WereatApp extends ConsumerWidget {
   const WereatApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: const AuthGate(),
+      routerConfig: router,
     );
   }
 }

@@ -9,7 +9,6 @@ import 'package:wereat/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:wereat/features/auth/presentation/widgets/button_spinner.dart';
 import 'package:wereat/features/auth/presentation/widgets/error_banner.dart';
 import 'package:wereat/features/auth/presentation/widgets/google_logo.dart';
-import 'package:wereat/features/map/presentation/pages/map_page.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
@@ -64,17 +63,6 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(registerControllerProvider, (previous, next) {
-      next.whenOrNull(
-        data: (user) {
-          if (user == null) return;
-          Navigator.of(
-            context,
-          ).pushReplacement(MaterialPageRoute(builder: (_) => const MapPage()));
-        },
-      );
-    });
-
     final registerState = ref.watch(registerControllerProvider);
     final isLoading = registerState.isLoading;
     final errorMessage = registerState.hasError

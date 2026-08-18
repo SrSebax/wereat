@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wereat/core/router/app_routes.dart';
 import 'package:wereat/core/theme/app_colors.dart';
 import 'package:wereat/core/theme/app_radius.dart';
 import 'package:wereat/core/theme/app_spacing.dart';
 import 'package:wereat/core/utils/validators.dart';
-import 'package:wereat/features/auth/presentation/pages/forgot_password_page.dart';
-import 'package:wereat/features/auth/presentation/pages/register_page.dart';
 import 'package:wereat/features/auth/presentation/providers/login_controller.dart';
 import 'package:wereat/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:wereat/features/auth/presentation/widgets/button_spinner.dart';
 import 'package:wereat/features/auth/presentation/widgets/error_banner.dart';
 import 'package:wereat/features/auth/presentation/widgets/google_logo.dart';
 import 'package:wereat/features/auth/presentation/widgets/login_header.dart';
-import 'package:wereat/features/map/presentation/pages/map_page.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -49,17 +48,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(loginControllerProvider, (previous, next) {
-      next.whenOrNull(
-        data: (user) {
-          if (user == null) return;
-          Navigator.of(
-            context,
-          ).pushReplacement(MaterialPageRoute(builder: (_) => const MapPage()));
-        },
-      );
-    });
-
     final loginState = ref.watch(loginControllerProvider);
     final isLoading = loginState.isLoading;
     final errorMessage = loginState.hasError
@@ -143,11 +131,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 child: TextButton(
                                   onPressed: isLoading
                                       ? null
-                                      : () => Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                            builder: (_) =>
-                                                const ForgotPasswordPage(),
-                                          ),
+                                      : () => context.push(
+                                          AppRoutes.forgotPassword,
                                         ),
                                   child: const Text(
                                     '¿Olvidaste tu contraseña?',
@@ -214,11 +199,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       child: TextButton(
                         onPressed: isLoading
                             ? null
-                            : () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const RegisterPage(),
-                                ),
-                              ),
+                            : () => context.push(AppRoutes.register),
                         child: const Text('¿No tienes cuenta? Registrate'),
                       ),
                     ),
