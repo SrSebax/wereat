@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>wereat isotype</title>
+<desc>Un pin de mapa con un mordisco en el borde superior derecho, símbolo de la marca wereat</desc>
+<defs>
+<mask id="bite">
+<path d="M100 20 C60 20 33 48 33 85 C33 132 100 195 100 195 C100 195 167 132 167 85 C167 48 140 20 100 20 Z" fill="#ffffff"/>
+<circle cx="148" cy="52" r="24" fill="#000000"/>
+</mask>
+</defs>
+<path d="M100 20 C60 20 33 48 33 85 C33 132 100 195 100 195 C100 195 167 132 167 85 C167 48 140 20 100 20 Z" fill="#D85A30" mask="url(#bite)"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>wereat monochrome mark</title>
+<desc>Versión de un solo color del isotipo de wereat, para sellos, grabados o fondos donde no se puede usar color</desc>
+<defs>
+<mask id="bite4">
+<path d="M100 20 C60 20 33 48 33 85 C33 132 100 195 100 195 C100 195 167 132 167 85 C167 48 140 20 100 20 Z" fill="#ffffff"/>
+<circle cx="148" cy="52" r="24" fill="#000000"/>
+</mask>
+</defs>
+<path d="M100 20 C60 20 33 48 33 85 C33 132 100 195 100 195 C100 195 167 132 167 85 C167 48 140 20 100 20 Z" fill="#2C2C2A" mask="url(#bite4)"/>
+</svg>

@@ -1,0 +1,12 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>wereat app icon</title>
+<desc>Ícono de app de wereat: fondo coral con el pin mordido en color crema, esquinas estilo squircle</desc>
+<defs>
+<mask id="bite3">
+<path d="M256 100 C171.2 100 102.4 165.5 102.4 246.4 C102.4 353.9 256 460 256 460 C256 460 409.6 353.9 409.6 246.4 C409.6 165.5 340.8 100 256 100 Z" fill="#ffffff"/>
+<circle cx="330" cy="167" r="61.5" fill="#000000"/>
+</mask>
+</defs>
+<rect x="0" y="0" width="512" height="512" rx="112" fill="#D85A30"/>
+<path d="M256 100 C171.2 100 102.4 165.5 102.4 246.4 C102.4 353.9 256 460 256 460 C256 460 409.6 353.9 409.6 246.4 C409.6 165.5 340.8 100 256 100 Z" fill="#FBF9F4" mask="url(#bite3)"/>
+</svg>
