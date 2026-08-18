@@ -1,243 +1,778 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>wereat — design system</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
-<style>
-  :root{
-    --coral-50:#FAECE7; --coral-100:#F5C4B3; --coral-200:#F0997B; --coral-400:#D85A30; --coral-600:#993C1D; --coral-800:#712B13; --coral-900:#4A1B0C;
-    --teal-50:#E1F5EE; --teal-100:#9FE1CB; --teal-200:#5DCAA5; --teal-400:#1D9E75; --teal-600:#0F6E56; --teal-800:#085041; --teal-900:#04342C;
-    --amber-50:#FAEEDA; --amber-100:#FAC775; --amber-200:#EF9F27; --amber-400:#BA7517; --amber-600:#854F0B; --amber-800:#633806; --amber-900:#412402;
-    --gray-50:#F1EFE8; --gray-100:#D3D1C7; --gray-200:#B4B2A9; --gray-400:#888780; --gray-600:#5F5E5A; --gray-800:#444441; --gray-900:#2C2C2A;
-    --cream:#FBF9F4;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0; background:var(--cream); color:var(--gray-900); font-family:'Inter',sans-serif; line-height:1.6;}
-  .wrap{max-width:920px; margin:0 auto; padding:64px 32px 100px;}
-  header.hero{margin-bottom:72px;}
-  .wordmark{font-family:'Fraunces',serif; font-weight:600; font-size:56px; color:var(--coral-400); margin:0; letter-spacing:-0.02em;}
-  .tagline{font-size:16px; color:var(--gray-600); margin:6px 0 0;}
-  .meta{display:flex; gap:24px; margin-top:20px; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray-400);}
-  section{margin-bottom:64px;}
-  h2{font-family:'Fraunces',serif; font-weight:600; font-size:26px; margin:0 0 6px; color:var(--gray-900);}
-  .section-sub{font-size:14px; color:var(--gray-600); margin:0 0 28px; max-width:560px;}
-  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--coral-400); margin-bottom:8px; display:block;}
+  <head>
+    <meta charset="UTF-8" />
+    <title>wereat — design system</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css"
+    />
+    <style>
+      :root {
+        --coral-50: #faece7;
+        --coral-100: #f5c4b3;
+        --coral-200: #f0997b;
+        --coral-400: #d85a30;
+        --coral-600: #993c1d;
+        --coral-800: #712b13;
+        --coral-900: #4a1b0c;
+        --teal-50: #e1f5ee;
+        --teal-100: #9fe1cb;
+        --teal-200: #5dcaa5;
+        --teal-400: #1d9e75;
+        --teal-600: #0f6e56;
+        --teal-800: #085041;
+        --teal-900: #04342c;
+        --amber-50: #faeeda;
+        --amber-100: #fac775;
+        --amber-200: #ef9f27;
+        --amber-400: #ba7517;
+        --amber-600: #854f0b;
+        --amber-800: #633806;
+        --amber-900: #412402;
+        --gray-50: #f1efe8;
+        --gray-100: #d3d1c7;
+        --gray-200: #b4b2a9;
+        --gray-400: #888780;
+        --gray-600: #5f5e5a;
+        --gray-800: #444441;
+        --gray-900: #2c2c2a;
+        --cream: #fbf9f4;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--gray-900);
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+      }
+      .wrap {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 64px 32px 100px;
+      }
+      header.hero {
+        margin-bottom: 72px;
+      }
+      .wordmark {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 56px;
+        color: var(--coral-400);
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+      .tagline {
+        font-size: 16px;
+        color: var(--gray-600);
+        margin: 6px 0 0;
+      }
+      .meta {
+        display: flex;
+        gap: 24px;
+        margin-top: 20px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--gray-400);
+      }
+      section {
+        margin-bottom: 64px;
+      }
+      h2 {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 26px;
+        margin: 0 0 6px;
+        color: var(--gray-900);
+      }
+      .section-sub {
+        font-size: 14px;
+        color: var(--gray-600);
+        margin: 0 0 28px;
+        max-width: 560px;
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--coral-400);
+        margin-bottom: 8px;
+        display: block;
+      }
 
-  .ramp-row{display:flex; margin-bottom:28px; border-radius:12px; overflow:hidden; border:0.5px solid var(--gray-100);}
-  .ramp-name{width:150px; flex-shrink:0; display:flex; flex-direction:column; justify-content:center; padding:16px; background:var(--gray-50);}
-  .ramp-name b{font-size:14px;}
-  .ramp-name span{font-size:12px; color:var(--gray-600); display:block; margin-top:2px;}
-  .swatch{flex:1; min-height:64px; display:flex; align-items:flex-end; padding:8px 10px; font-family:'JetBrains Mono',monospace; font-size:10px;}
+      .ramp-row {
+        display: flex;
+        margin-bottom: 28px;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 0.5px solid var(--gray-100);
+      }
+      .ramp-name {
+        width: 150px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px;
+        background: var(--gray-50);
+      }
+      .ramp-name b {
+        font-size: 14px;
+      }
+      .ramp-name span {
+        font-size: 12px;
+        color: var(--gray-600);
+        display: block;
+        margin-top: 2px;
+      }
+      .swatch {
+        flex: 1;
+        min-height: 64px;
+        display: flex;
+        align-items: flex-end;
+        padding: 8px 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+      }
 
-  .comp-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  .comp-card{background:#fff; border:0.5px solid var(--gray-100); border-radius:12px; padding:20px;}
-  .comp-card .label{font-size:12px; color:var(--gray-600); margin:0 0 14px;}
+      .comp-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .comp-card {
+        background: #fff;
+        border: 0.5px solid var(--gray-100);
+        border-radius: 12px;
+        padding: 20px;
+      }
+      .comp-card .label {
+        font-size: 12px;
+        color: var(--gray-600);
+        margin: 0 0 14px;
+      }
 
-  .btn-primary{background:var(--coral-400); color:var(--coral-50); border:none; font-weight:500; font-size:14px; padding:11px 22px; border-radius:24px; display:inline-flex; align-items:center; gap:6px;}
-  .btn-secondary{background:var(--teal-600); color:var(--teal-50); border:none; font-weight:500; font-size:14px; padding:11px 22px; border-radius:24px; display:inline-flex; align-items:center; gap:6px;}
-  .btn-ghost{background:#fff; color:var(--gray-900); border:0.5px solid var(--gray-200); font-weight:500; font-size:14px; padding:11px 22px; border-radius:24px;}
+      .btn-primary {
+        background: var(--coral-400);
+        color: var(--coral-50);
+        border: none;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 11px 22px;
+        border-radius: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-secondary {
+        background: var(--teal-600);
+        color: var(--teal-50);
+        border: none;
+        font-weight: 500;
+        font-size: 14px;
+        padding: 11px 22px;
+        border-radius: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-ghost {
+        background: #fff;
+        color: var(--gray-900);
+        border: 0.5px solid var(--gray-200);
+        font-weight: 500;
+        font-size: 14px;
+        padding: 11px 22px;
+        border-radius: 24px;
+      }
 
-  .badge{display:inline-flex; align-items:center; gap:4px; font-size:12px; font-weight:500; padding:5px 12px; border-radius:14px;}
-  .badge-food{background:var(--amber-50); color:var(--amber-600);}
-  .badge-loc{background:var(--teal-50); color:var(--teal-800);}
-  .badge-you{background:var(--coral-50); color:var(--coral-600);}
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 14px;
+      }
+      .badge-food {
+        background: var(--amber-50);
+        color: var(--amber-600);
+      }
+      .badge-loc {
+        background: var(--teal-50);
+        color: var(--teal-800);
+      }
+      .badge-you {
+        background: var(--coral-50);
+        color: var(--coral-600);
+      }
 
-  .field-demo label{font-size:12px; color:var(--gray-600); display:block; margin-bottom:5px;}
-  .field-demo input, .field-demo select{width:100%; height:38px; border-radius:8px; border:0.5px solid var(--gray-200); padding:0 12px; font-family:'Inter',sans-serif; font-size:13px; background:#fff; margin-bottom:12px;}
+      .field-demo label {
+        font-size: 12px;
+        color: var(--gray-600);
+        display: block;
+        margin-bottom: 5px;
+      }
+      .field-demo input,
+      .field-demo select {
+        width: 100%;
+        height: 38px;
+        border-radius: 8px;
+        border: 0.5px solid var(--gray-200);
+        padding: 0 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        background: #fff;
+        margin-bottom: 12px;
+      }
 
-  .avatar{width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:500; color:#fff;}
+      .avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+      }
 
-  table.tokens{width:100%; border-collapse:collapse; font-size:13px;}
-  table.tokens th{text-align:left; font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.04em; color:var(--gray-400); font-weight:500; padding:8px 12px; border-bottom:1px solid var(--gray-100);}
-  table.tokens td{padding:10px 12px; border-bottom:0.5px solid var(--gray-100); vertical-align:top;}
-  table.tokens code{font-family:'JetBrains Mono',monospace; font-size:12px; background:var(--gray-50); padding:2px 6px; border-radius:4px;}
+      table.tokens {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      table.tokens th {
+        text-align: left;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--gray-400);
+        font-weight: 500;
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--gray-100);
+      }
+      table.tokens td {
+        padding: 10px 12px;
+        border-bottom: 0.5px solid var(--gray-100);
+        vertical-align: top;
+      }
+      table.tokens code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        background: var(--gray-50);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
 
-  .type-sample{border-bottom:0.5px solid var(--gray-100); padding:18px 0;}
-  .type-sample .tag{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-400); margin-bottom:6px; display:block;}
+      .type-sample {
+        border-bottom: 0.5px solid var(--gray-100);
+        padding: 18px 0;
+      }
+      .type-sample .tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--gray-400);
+        margin-bottom: 6px;
+        display: block;
+      }
 
-  .icon-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:16px;}
-  .icon-item{background:#fff; border:0.5px solid var(--gray-100); border-radius:10px; padding:14px 8px; text-align:center;}
-  .icon-item i{font-size:22px; color:var(--coral-400);}
-  .icon-item span{display:block; font-size:10px; color:var(--gray-600); margin-top:6px; font-family:'JetBrains Mono',monospace;}
+      .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+      }
+      .icon-item {
+        background: #fff;
+        border: 0.5px solid var(--gray-100);
+        border-radius: 10px;
+        padding: 14px 8px;
+        text-align: center;
+      }
+      .icon-item i {
+        font-size: 22px;
+        color: var(--coral-400);
+      }
+      .icon-item span {
+        display: block;
+        font-size: 10px;
+        color: var(--gray-600);
+        margin-top: 6px;
+        font-family: "JetBrains Mono", monospace;
+      }
 
-  footer{border-top:0.5px solid var(--gray-100); padding-top:24px; font-size:12px; color:var(--gray-400);}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <header class="hero">
-    <p class="wordmark">wereat</p>
-    <p class="tagline">Descubrí y guardá lugares con tu gente. Where + eat.</p>
-    <div class="meta">
-      <span>v1.0</span>
-      <span>mobile-first</span>
-      <span>agosto 2026</span>
-    </div>
-  </header>
-
-  <section>
-    <span class="eyebrow">01 — color</span>
-    <h2>Paleta</h2>
-    <p class="section-sub">Coral para todo lo que es acción y comida. Teal para mapa, ubicación y todo lo que transmite confianza. Ámbar solo para etiquetas de categoría. Gris cálido para texto y superficies.</p>
-
-    <div class="ramp-row">
-      <div class="ramp-name"><b>Coral</b><span>Marca, CTA, comida</span></div>
-      <div class="swatch" style="background:var(--coral-50); color:var(--coral-900);">50 · #FAECE7</div>
-      <div class="swatch" style="background:var(--coral-100); color:var(--coral-900);">100 · #F5C4B3</div>
-      <div class="swatch" style="background:var(--coral-200); color:var(--coral-900);">200 · #F0997B</div>
-      <div class="swatch" style="background:var(--coral-400); color:var(--coral-50);">400 · #D85A30</div>
-      <div class="swatch" style="background:var(--coral-600); color:var(--coral-50);">600 · #993C1D</div>
-      <div class="swatch" style="background:var(--coral-800); color:var(--coral-100);">800 · #712B13</div>
-      <div class="swatch" style="background:var(--coral-900); color:var(--coral-100);">900 · #4A1B0C</div>
-    </div>
-
-    <div class="ramp-row">
-      <div class="ramp-name"><b>Teal</b><span>Mapa, ubicación</span></div>
-      <div class="swatch" style="background:var(--teal-50); color:var(--teal-900);">50 · #E1F5EE</div>
-      <div class="swatch" style="background:var(--teal-100); color:var(--teal-900);">100 · #9FE1CB</div>
-      <div class="swatch" style="background:var(--teal-200); color:var(--teal-900);">200 · #5DCAA5</div>
-      <div class="swatch" style="background:var(--teal-400); color:var(--teal-50);">400 · #1D9E75</div>
-      <div class="swatch" style="background:var(--teal-600); color:var(--teal-50);">600 · #0F6E56</div>
-      <div class="swatch" style="background:var(--teal-800); color:var(--teal-100);">800 · #085041</div>
-      <div class="swatch" style="background:var(--teal-900); color:var(--teal-100);">900 · #04342C</div>
-    </div>
-
-    <div class="ramp-row">
-      <div class="ramp-name"><b>Ámbar</b><span>Badges de categoría</span></div>
-      <div class="swatch" style="background:var(--amber-50); color:var(--amber-900);">50 · #FAEEDA</div>
-      <div class="swatch" style="background:var(--amber-100); color:var(--amber-900);">100 · #FAC775</div>
-      <div class="swatch" style="background:var(--amber-200); color:var(--amber-900);">200 · #EF9F27</div>
-      <div class="swatch" style="background:var(--amber-400); color:var(--amber-50);">400 · #BA7517</div>
-      <div class="swatch" style="background:var(--amber-600); color:var(--amber-50);">600 · #854F0B</div>
-      <div class="swatch" style="background:var(--amber-800); color:var(--amber-100);">800 · #633806</div>
-      <div class="swatch" style="background:var(--amber-900); color:var(--amber-100);">900 · #412402</div>
-    </div>
-
-    <div class="ramp-row">
-      <div class="ramp-name"><b>Gris cálido</b><span>Texto, superficies</span></div>
-      <div class="swatch" style="background:var(--gray-50); color:var(--gray-900);">50 · #F1EFE8</div>
-      <div class="swatch" style="background:var(--gray-100); color:var(--gray-900);">100 · #D3D1C7</div>
-      <div class="swatch" style="background:var(--gray-200); color:var(--gray-900);">200 · #B4B2A9</div>
-      <div class="swatch" style="background:var(--gray-400); color:var(--gray-50);">400 · #888780</div>
-      <div class="swatch" style="background:var(--gray-600); color:var(--gray-50);">600 · #5F5E5A</div>
-      <div class="swatch" style="background:var(--gray-800); color:var(--gray-100);">800 · #444441</div>
-      <div class="swatch" style="background:var(--gray-900); color:var(--gray-100);">900 · #2C2C2A</div>
-    </div>
-  </section>
-
-  <section>
-    <span class="eyebrow">02 — tipografía</span>
-    <h2>Type</h2>
-    <p class="section-sub">Fraunces para lo editorial y de marca (títulos, wordmark). Inter para toda la interfaz. JetBrains Mono para metadatos, tiempos y valores técnicos.</p>
-
-    <div class="type-sample">
-      <span class="tag">Display / Fraunces 600 / 28px — títulos de pantalla</span>
-      <div style="font-family:'Fraunces',serif; font-weight:600; font-size:28px;">Foodies Bogotá</div>
-    </div>
-    <div class="type-sample">
-      <span class="tag">Título de componente / Inter 500 / 16px</span>
-      <div style="font-family:'Inter',sans-serif; font-weight:500; font-size:16px;">Arepas Doña Luz</div>
-    </div>
-    <div class="type-sample">
-      <span class="tag">Cuerpo / Inter 400 / 14px</span>
-      <div style="font-family:'Inter',sans-serif; font-weight:400; font-size:14px;">Ana agregó Arepas Doña Luz al grupo hace 2 horas.</div>
-    </div>
-    <div class="type-sample">
-      <span class="tag">Metadato / JetBrains Mono 400 / 12px</span>
-      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray-600);">hace 2h · Restaurante · 4.2 km</div>
-    </div>
-  </section>
-
-  <section>
-    <span class="eyebrow">03 — componentes</span>
-    <h2>Botones y badges</h2>
-    <p class="section-sub">Un solo botón sólido (coral) por pantalla para la acción principal. El resto, contorno o teal para acciones secundarias de ubicación.</p>
-
-    <div class="comp-grid">
-      <div class="comp-card">
-        <p class="label">Botones</p>
-        <div style="display:flex; flex-direction:column; gap:10px; align-items:flex-start;">
-          <button class="btn-primary"><i class="ti ti-plus"></i>Guardar lugar</button>
-          <button class="btn-secondary"><i class="ti ti-map-pin"></i>Cómo llegar</button>
-          <button class="btn-ghost">Cancelar</button>
+      footer {
+        border-top: 0.5px solid var(--gray-100);
+        padding-top: 24px;
+        font-size: 12px;
+        color: var(--gray-400);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <p class="wordmark">wereat</p>
+        <p class="tagline">Todos tus lugares favoritos, en un solo mapa.</p>
+        <div class="meta">
+          <span>v1.0</span>
+          <span>mobile-first</span>
+          <span>agosto 2026</span>
         </div>
-      </div>
-      <div class="comp-card">
-        <p class="label">Badges de categoría</p>
-        <div style="display:flex; flex-wrap:wrap; gap:8px;">
-          <span class="badge badge-food"><i class="ti ti-tools-kitchen-2"></i>Restaurante</span>
-          <span class="badge badge-loc"><i class="ti ti-map-pin"></i>Bogotá</span>
-          <span class="badge badge-you">Agregado por vos</span>
+      </header>
+
+      <section>
+        <span class="eyebrow">01 — color</span>
+        <h2>Paleta</h2>
+        <p class="section-sub">
+          Coral para todo lo que es acción y comida. Teal para mapa, ubicación y
+          todo lo que transmite confianza. Ámbar solo para etiquetas de
+          categoría. Gris cálido para texto y superficies.
+        </p>
+
+        <div class="ramp-row">
+          <div class="ramp-name">
+            <b>Coral</b><span>Marca, CTA, comida</span>
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--coral-50); color: var(--coral-900)"
+          >
+            50 · #FAECE7
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--coral-100); color: var(--coral-900)"
+          >
+            100 · #F5C4B3
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--coral-200); color: var(--coral-900)"
+          >
+            200 · #F0997B
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--coral-400); color: var(--coral-50)"
+          >
+            400 · #D85A30
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--coral-600); color: var(--coral-50)"
+          >
+            600 · #993C1D
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--coral-800); color: var(--coral-100)"
+          >
+            800 · #712B13
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--coral-900); color: var(--coral-100)"
+          >
+            900 · #4A1B0C
+          </div>
         </div>
-      </div>
-      <div class="comp-card">
-        <p class="label">Campos de formulario</p>
-        <div class="field-demo">
-          <label>Nombre del lugar</label>
-          <input placeholder="Arepas Doña Luz">
-          <label>Categoría</label>
-          <select><option>Restaurante</option></select>
+
+        <div class="ramp-row">
+          <div class="ramp-name"><b>Teal</b><span>Mapa, ubicación</span></div>
+          <div
+            class="swatch"
+            style="background: var(--teal-50); color: var(--teal-900)"
+          >
+            50 · #E1F5EE
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--teal-100); color: var(--teal-900)"
+          >
+            100 · #9FE1CB
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--teal-200); color: var(--teal-900)"
+          >
+            200 · #5DCAA5
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--teal-400); color: var(--teal-50)"
+          >
+            400 · #1D9E75
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--teal-600); color: var(--teal-50)"
+          >
+            600 · #0F6E56
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--teal-800); color: var(--teal-100)"
+          >
+            800 · #085041
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--teal-900); color: var(--teal-100)"
+          >
+            900 · #04342C
+          </div>
         </div>
-      </div>
-      <div class="comp-card">
-        <p class="label">Avatares de grupo</p>
-        <div style="display:flex; gap:8px;">
-          <div class="avatar" style="background:var(--teal-200); color:var(--teal-900);">A</div>
-          <div class="avatar" style="background:var(--coral-200); color:var(--coral-900);">J</div>
-          <div class="avatar" style="background:var(--amber-200); color:var(--amber-900);">M</div>
+
+        <div class="ramp-row">
+          <div class="ramp-name">
+            <b>Ámbar</b><span>Badges de categoría</span>
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--amber-50); color: var(--amber-900)"
+          >
+            50 · #FAEEDA
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--amber-100); color: var(--amber-900)"
+          >
+            100 · #FAC775
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--amber-200); color: var(--amber-900)"
+          >
+            200 · #EF9F27
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--amber-400); color: var(--amber-50)"
+          >
+            400 · #BA7517
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--amber-600); color: var(--amber-50)"
+          >
+            600 · #854F0B
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--amber-800); color: var(--amber-100)"
+          >
+            800 · #633806
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--amber-900); color: var(--amber-100)"
+          >
+            900 · #412402
+          </div>
         </div>
-      </div>
+
+        <div class="ramp-row">
+          <div class="ramp-name">
+            <b>Gris cálido</b><span>Texto, superficies</span>
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--gray-50); color: var(--gray-900)"
+          >
+            50 · #F1EFE8
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--gray-100); color: var(--gray-900)"
+          >
+            100 · #D3D1C7
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--gray-200); color: var(--gray-900)"
+          >
+            200 · #B4B2A9
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--gray-400); color: var(--gray-50)"
+          >
+            400 · #888780
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--gray-600); color: var(--gray-50)"
+          >
+            600 · #5F5E5A
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--gray-800); color: var(--gray-100)"
+          >
+            800 · #444441
+          </div>
+          <div
+            class="swatch"
+            style="background: var(--gray-900); color: var(--gray-100)"
+          >
+            900 · #2C2C2A
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">02 — tipografía</span>
+        <h2>Type</h2>
+        <p class="section-sub">
+          Fraunces para lo editorial y de marca (títulos, wordmark). Inter para
+          toda la interfaz. JetBrains Mono para metadatos, tiempos y valores
+          técnicos.
+        </p>
+
+        <div class="type-sample">
+          <span class="tag"
+            >Display / Fraunces 600 / 28px — títulos de pantalla</span
+          >
+          <div
+            style="
+              font-family: &quot;Fraunces&quot;, serif;
+              font-weight: 600;
+              font-size: 28px;
+            "
+          >
+            Foodies Bogotá
+          </div>
+        </div>
+        <div class="type-sample">
+          <span class="tag">Título de componente / Inter 500 / 16px</span>
+          <div
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-weight: 500;
+              font-size: 16px;
+            "
+          >
+            Arepas Doña Luz
+          </div>
+        </div>
+        <div class="type-sample">
+          <span class="tag">Cuerpo / Inter 400 / 14px</span>
+          <div
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-weight: 400;
+              font-size: 14px;
+            "
+          >
+            Ana agregó Arepas Doña Luz al grupo hace 2 horas.
+          </div>
+        </div>
+        <div class="type-sample">
+          <span class="tag">Metadato / JetBrains Mono 400 / 12px</span>
+          <div
+            style="
+              font-family: &quot;JetBrains Mono&quot;, monospace;
+              font-size: 12px;
+              color: var(--gray-600);
+            "
+          >
+            hace 2h · Restaurante · 4.2 km
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">03 — componentes</span>
+        <h2>Botones y badges</h2>
+        <p class="section-sub">
+          Un solo botón sólido (coral) por pantalla para la acción principal. El
+          resto, contorno o teal para acciones secundarias de ubicación.
+        </p>
+
+        <div class="comp-grid">
+          <div class="comp-card">
+            <p class="label">Botones</p>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+              "
+            >
+              <button class="btn-primary">
+                <i class="ti ti-plus"></i>Guardar lugar
+              </button>
+              <button class="btn-secondary">
+                <i class="ti ti-map-pin"></i>Cómo llegar
+              </button>
+              <button class="btn-ghost">Cancelar</button>
+            </div>
+          </div>
+          <div class="comp-card">
+            <p class="label">Badges de categoría</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <span class="badge badge-food"
+                ><i class="ti ti-tools-kitchen-2"></i>Restaurante</span
+              >
+              <span class="badge badge-loc"
+                ><i class="ti ti-map-pin"></i>Bogotá</span
+              >
+              <span class="badge badge-you">Agregado por vos</span>
+            </div>
+          </div>
+          <div class="comp-card">
+            <p class="label">Campos de formulario</p>
+            <div class="field-demo">
+              <label>Nombre del lugar</label>
+              <input placeholder="Arepas Doña Luz" />
+              <label>Categoría</label>
+              <select>
+                <option>Restaurante</option>
+              </select>
+            </div>
+          </div>
+          <div class="comp-card">
+            <p class="label">Avatares de grupo</p>
+            <div style="display: flex; gap: 8px">
+              <div
+                class="avatar"
+                style="background: var(--teal-200); color: var(--teal-900)"
+              >
+                A
+              </div>
+              <div
+                class="avatar"
+                style="background: var(--coral-200); color: var(--coral-900)"
+              >
+                J
+              </div>
+              <div
+                class="avatar"
+                style="background: var(--amber-200); color: var(--amber-900)"
+              >
+                M
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">04 — iconografía</span>
+        <h2>Íconos</h2>
+        <p class="section-sub">
+          Set Tabler Icons, estilo outline únicamente. Coral para íconos de
+          acción/comida, gris para neutros.
+        </p>
+        <div class="icon-grid">
+          <div class="icon-item">
+            <i class="ti ti-map-pin-filled"></i><span>pin</span>
+          </div>
+          <div class="icon-item">
+            <i class="ti ti-tools-kitchen-2"></i><span>restaurante</span>
+          </div>
+          <div class="icon-item">
+            <i class="ti ti-coffee"></i><span>café</span>
+          </div>
+          <div class="icon-item">
+            <i class="ti ti-glass-cocktail"></i><span>bar</span>
+          </div>
+          <div class="icon-item">
+            <i class="ti ti-users"></i><span>grupo</span>
+          </div>
+          <div class="icon-item">
+            <i class="ti ti-brand-instagram"></i><span>redes</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">05 — tokens</span>
+        <h2>Espaciado y forma</h2>
+        <table class="tokens">
+          <tr>
+            <th>Token</th>
+            <th>Valor</th>
+            <th>Uso</th>
+          </tr>
+          <tr>
+            <td>radius-card</td>
+            <td><code>12px</code></td>
+            <td>Cards, contenedores de lista</td>
+          </tr>
+          <tr>
+            <td>radius-pill</td>
+            <td><code>16–24px</code></td>
+            <td>Badges, botones principales</td>
+          </tr>
+          <tr>
+            <td>radius-input</td>
+            <td><code>8px</code></td>
+            <td>Inputs, selects</td>
+          </tr>
+          <tr>
+            <td>border</td>
+            <td><code>0.5px solid gray-100</code></td>
+            <td>Separadores, bordes de card</td>
+          </tr>
+          <tr>
+            <td>gap-sm / md / lg</td>
+            <td><code>8 / 12 / 20px</code></td>
+            <td>Espaciado entre elementos</td>
+          </tr>
+          <tr>
+            <td>touch-target</td>
+            <td><code>44px mínimo</code></td>
+            <td>Toda acción tocable en mobile</td>
+          </tr>
+        </table>
+      </section>
+
+      <section>
+        <span class="eyebrow">06 — voz</span>
+        <h2>Tono de escritura</h2>
+        <table class="tokens">
+          <tr>
+            <th>Sí</th>
+            <th>No</th>
+          </tr>
+          <tr>
+            <td>"Guardar lugar"</td>
+            <td>"Enviar formulario"</td>
+          </tr>
+          <tr>
+            <td>"Agregado por Ana"</td>
+            <td>"Este lugar fue agregado por el usuario Ana"</td>
+          </tr>
+          <tr>
+            <td>"Sin actividad reciente"</td>
+            <td>"No hay nada aquí todavía :("</td>
+          </tr>
+          <tr>
+            <td>"Buscar en el mapa..."</td>
+            <td>"Por favor ingrese una dirección"</td>
+          </tr>
+        </table>
+      </section>
+
+      <footer>
+        wereat design system · uso interno · construido a partir de las vistas
+        mobile del producto
+      </footer>
     </div>
-  </section>
-
-  <section>
-    <span class="eyebrow">04 — iconografía</span>
-    <h2>Íconos</h2>
-    <p class="section-sub">Set Tabler Icons, estilo outline únicamente. Coral para íconos de acción/comida, gris para neutros.</p>
-    <div class="icon-grid">
-      <div class="icon-item"><i class="ti ti-map-pin-filled"></i><span>pin</span></div>
-      <div class="icon-item"><i class="ti ti-tools-kitchen-2"></i><span>restaurante</span></div>
-      <div class="icon-item"><i class="ti ti-coffee"></i><span>café</span></div>
-      <div class="icon-item"><i class="ti ti-glass-cocktail"></i><span>bar</span></div>
-      <div class="icon-item"><i class="ti ti-users"></i><span>grupo</span></div>
-      <div class="icon-item"><i class="ti ti-brand-instagram"></i><span>redes</span></div>
-    </div>
-  </section>
-
-  <section>
-    <span class="eyebrow">05 — tokens</span>
-    <h2>Espaciado y forma</h2>
-    <table class="tokens">
-      <tr><th>Token</th><th>Valor</th><th>Uso</th></tr>
-      <tr><td>radius-card</td><td><code>12px</code></td><td>Cards, contenedores de lista</td></tr>
-      <tr><td>radius-pill</td><td><code>16–24px</code></td><td>Badges, botones principales</td></tr>
-      <tr><td>radius-input</td><td><code>8px</code></td><td>Inputs, selects</td></tr>
-      <tr><td>border</td><td><code>0.5px solid gray-100</code></td><td>Separadores, bordes de card</td></tr>
-      <tr><td>gap-sm / md / lg</td><td><code>8 / 12 / 20px</code></td><td>Espaciado entre elementos</td></tr>
-      <tr><td>touch-target</td><td><code>44px mínimo</code></td><td>Toda acción tocable en mobile</td></tr>
-    </table>
-  </section>
-
-  <section>
-    <span class="eyebrow">06 — voz</span>
-    <h2>Tono de escritura</h2>
-    <table class="tokens">
-      <tr><th>Sí</th><th>No</th></tr>
-      <tr><td>"Guardar lugar"</td><td>"Enviar formulario"</td></tr>
-      <tr><td>"Agregado por Ana"</td><td>"Este lugar fue agregado por el usuario Ana"</td></tr>
-      <tr><td>"Sin actividad reciente"</td><td>"No hay nada aquí todavía :("</td></tr>
-      <tr><td>"Buscar en el mapa..."</td><td>"Por favor ingrese una dirección"</td></tr>
-    </table>
-  </section>
-
-  <footer>
-    wereat design system · uso interno · construido a partir de las vistas mobile del producto
-  </footer>
-
-</div>
-</body>
+  </body>
 </html>

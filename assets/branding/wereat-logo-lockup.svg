@@ -1,0 +1,16 @@
+<svg viewBox="0 0 520 140" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>wereat logo</title>
+<desc>Logo horizontal de wereat: isotipo de pin mordido junto al wordmark en tipografía serif</desc>
+<defs>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600&display=swap');
+.wordmark{ font-family:'Fraunces', Georgia, serif; font-weight:600; font-size:64px; fill:#D85A30; }
+</style>
+<mask id="bite2">
+<path d="M70 20 C43.6 20 24.1 40.5 24.1 63.5 C24.1 95.7 70 138 70 138 C70 138 115.9 95.7 115.9 63.5 C115.9 40.5 96.4 20 70 20 Z" fill="#ffffff"/>
+<circle cx="101.6" cy="43.4" r="16.8" fill="#000000"/>
+</mask>
+</defs>
+<path d="M70 20 C43.6 20 24.1 40.5 24.1 63.5 C24.1 95.7 70 138 70 138 C70 138 115.9 95.7 115.9 63.5 C115.9 40.5 96.4 20 70 20 Z" fill="#D85A30" mask="url(#bite2)"/>
+<text x="150" y="98" class="wordmark">wereat</text>
+</svg>

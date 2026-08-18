@@ -1,3 +1,16 @@
+# Environment / secrets (no aplica a Firebase: esas keys de cliente no son
+# secretas y van commiteadas vía google-services.json / GoogleService-Info.plist)
+.env
+.env.*
+!.env.example
+
+# Firebase CLI
+.firebase/
+firebase-debug.log
+firestore-debug.log
+database-debug.log
+ui-debug.log
+
 # Miscellaneous
 *.class
 *.log
