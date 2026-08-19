@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wereat/core/theme/app_colors.dart';
-import 'package:wereat/core/theme/app_theme.dart';
 
 /// Shell con bottom nav (Mapa/Grupos/+/Lista/Perfil) para la sección
 /// post-login. El botón central no es una pestaña: dispara la acción de
@@ -19,19 +18,16 @@ class MainShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: AppTheme.dark,
-      child: Scaffold(
-        backgroundColor: AppColors.gray950,
-        body: navigationShell,
-        bottomNavigationBar: _BottomNav(
-          currentIndex: navigationShell.currentIndex,
-          onTap: (index) => navigationShell.goBranch(
-            index,
-            initialLocation: index == navigationShell.currentIndex,
-          ),
-          onAddPlace: () => _addPlace(context),
+    return Scaffold(
+      backgroundColor: AppColors.cream,
+      body: navigationShell,
+      bottomNavigationBar: _BottomNav(
+        currentIndex: navigationShell.currentIndex,
+        onTap: (index) => navigationShell.goBranch(
+          index,
+          initialLocation: index == navigationShell.currentIndex,
         ),
+        onAddPlace: () => _addPlace(context),
       ),
     );
   }
@@ -53,8 +49,8 @@ class _BottomNav extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       decoration: const BoxDecoration(
-        color: AppColors.gray950,
-        border: Border(top: BorderSide(color: AppColors.gray800, width: 0.5)),
+        color: Colors.white,
+        border: Border(top: BorderSide(color: AppColors.gray100, width: 0.5)),
       ),
       child: SafeArea(
         top: false,

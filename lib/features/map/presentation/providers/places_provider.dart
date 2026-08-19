@@ -9,12 +9,16 @@ final groupPlacesProvider = Provider<List<Place>>((ref) {
       name: 'Arepas Doña Luz',
       addedByLabel: 'Agregado por Ana',
       category: PlaceCategory.restaurant,
+      latitude: 6.2442,
+      longitude: -75.5812,
     ),
     Place(
       id: '2',
       name: 'Café Tostado',
       addedByLabel: 'Agregado por vos',
       category: PlaceCategory.cafe,
+      latitude: 6.2088,
+      longitude: -75.5658,
     ),
   ];
 });

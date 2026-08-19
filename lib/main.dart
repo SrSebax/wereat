@@ -22,6 +22,7 @@ class WereatApp extends ConsumerWidget {
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      themeMode: ThemeMode.light,
       routerConfig: router,
     );
   }

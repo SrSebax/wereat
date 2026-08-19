@@ -27,15 +27,24 @@ class UserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundColor: AppColors.coral200,
-      child: Text(
-        _initials,
-        style: TextStyle(
-          color: AppColors.coral900,
-          fontWeight: FontWeight.w600,
-          fontSize: radius * 0.75,
+    return Container(
+      padding: const EdgeInsets.all(2),
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.fromBorderSide(
+          BorderSide(color: AppColors.coral200, width: 1.5),
+        ),
+      ),
+      child: CircleAvatar(
+        radius: radius,
+        backgroundColor: AppColors.coral200,
+        child: Text(
+          _initials,
+          style: TextStyle(
+            color: AppColors.coral900,
+            fontWeight: FontWeight.w600,
+            fontSize: radius * 0.75,
+          ),
         ),
       ),
     );

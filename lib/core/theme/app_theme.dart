@@ -101,45 +101,6 @@ class AppTheme {
     );
   }
 
-  /// Tema oscuro usado en la sección post-login (mapa, grupos, lista, perfil).
-  static ThemeData get dark {
-    final textTheme = _textTheme(Colors.white);
-
-    return ThemeData(
-      useMaterial3: true,
-      scaffoldBackgroundColor: AppColors.gray950,
-      colorScheme: const ColorScheme.dark(
-        primary: AppColors.coral400,
-        onPrimary: AppColors.coral50,
-        secondary: AppColors.teal400,
-        onSecondary: AppColors.teal900,
-        tertiary: AppColors.amber200,
-        onTertiary: AppColors.amber900,
-        error: AppColors.coral400,
-        onError: AppColors.coral50,
-        surface: AppColors.surfaceDark,
-        onSurface: Colors.white,
-        outline: AppColors.gray800,
-        outlineVariant: AppColors.gray800,
-      ),
-      textTheme: textTheme,
-      extensions: const [AppColorsExtension.light],
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.coral400,
-          foregroundColor: AppColors.coral50,
-          minimumSize: const Size.fromHeight(52),
-          textStyle: textTheme.labelLarge?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.pill),
-          ),
-        ),
-      ),
-    );
-  }
-
   static TextTheme _textTheme(Color baseColor) {
     final display = GoogleFonts.frauncesTextTheme();
     final body = GoogleFonts.interTextTheme();
