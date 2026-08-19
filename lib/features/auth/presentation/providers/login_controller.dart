@@ -29,10 +29,14 @@ class LoginController extends AsyncNotifier<AppUser?> {
   Future<void> signInWithGoogle() async {
     state = const AsyncLoading();
     final useCase = ref.read(signInWithGoogleProvider);
-    final result = await useCase(const NoParams());
-    state = result.fold(
-      (failure) => AsyncError(failure.message, StackTrace.current),
-      (user) => AsyncData(user),
-    );
+    try {
+      final result = await useCase(const NoParams());
+      state = result.fold(
+        (failure) => AsyncError(failure.message, StackTrace.current),
+        (user) => AsyncData(user),
+      );
+    } catch (e, st) {
+      state = AsyncError('Algo salió mal. Intentá de nuevo.', st);
+    }
   }
 }

@@ -13,6 +13,7 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final topInset = MediaQuery.paddingOf(context).top;
     return SizedBox(
       height: height,
       child: Stack(
@@ -70,7 +71,7 @@ class LoginHeader extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 18,
+            top: topInset + 18,
             left: 20,
             child: Transform.rotate(
               angle: -0.14,
@@ -83,7 +84,7 @@ class LoginHeader extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 40,
+            top: topInset + 40,
             right: 16,
             child: Transform.rotate(
               angle: 0.12,

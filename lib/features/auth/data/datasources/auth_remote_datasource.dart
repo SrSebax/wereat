@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:wereat/core/error/exceptions.dart';
 import 'package:wereat/features/auth/data/models/app_user_model.dart';
@@ -32,7 +31,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void>? _googleSignInInit;
 
   /// clientId/serverClientId no se pasan: se resuelven de
-  /// google-services.json (Android) y GoogleService-Info.plist (iOS).
+  /// google-services.json (Android).
   Future<void> _ensureGoogleSignInInitialized() {
     return _googleSignInInit ??= _googleSignIn.initialize();
   }
@@ -61,8 +60,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<AppUserModel> signInWithGoogle() async {
-    if (kIsWeb) return _signInWithGooglePopup();
-
     await _ensureGoogleSignInInitialized();
 
     final GoogleSignInAccount googleUser;
@@ -96,6 +93,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       throw AuthException(_messageFor(e.code));
     } on GoogleSignInException catch (e) {
       throw AuthException(_messageForGoogle(e.code));
+    } on AuthException {
+      rethrow;
+    } catch (_) {
+      throw const AuthException('No pudimos conectar con Google. Intentá de nuevo.');
     }
   }
 
@@ -141,23 +142,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     await _firebaseAuth.signOut();
     if (_googleSignInInit != null) {
       await _googleSignIn.signOut();
-    }
-  }
-
-  /// En web no se usa el plugin google_sign_in (requiere un OAuth client id
-  /// aparte vía meta tag): se abre el popup de Google directo con Firebase Auth.
-  Future<AppUserModel> _signInWithGooglePopup() async {
-    try {
-      final userCredential = await _firebaseAuth.signInWithPopup(
-        GoogleAuthProvider(),
-      );
-      final user = userCredential.user;
-      if (user == null) {
-        throw const AuthException('No pudimos iniciar tu sesión con Google.');
-      }
-      return AppUserModel.fromFirebaseUser(user);
-    } on FirebaseAuthException catch (e) {
-      throw AuthException(_messageFor(e.code));
     }
   }
 

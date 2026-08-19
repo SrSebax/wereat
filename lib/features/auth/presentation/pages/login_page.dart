@@ -185,7 +185,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                         children: [
                                           const GoogleLogo(),
                                           const SizedBox(width: 10),
-                                          const Text('Continuar con Google'),
+                                          Flexible(
+                                            child: Text(
+                                              'Continuar con Google',
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
                                         ],
                                       ),
                               ),

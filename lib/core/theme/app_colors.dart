@@ -37,8 +37,12 @@ class AppColors {
   static const Color gray600 = Color(0xFF5F5E5A);
   static const Color gray800 = Color(0xFF444441);
   static const Color gray900 = Color(0xFF2C2C2A);
+  static const Color gray950 = Color(0xFF17160F);
 
   static const Color cream = Color(0xFFFBF9F4);
+
+  /// Superficie de card sobre fondo oscuro (gray950).
+  static const Color surfaceDark = Color(0xFF211F19);
 }
 
 /// Acceso a la paleta completa vía Theme.of(context).extension&lt;AppColorsExtension&gt;()
