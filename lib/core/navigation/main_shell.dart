@@ -48,9 +48,19 @@ class _BottomNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(top: BorderSide(color: AppColors.gray100, width: 0.5)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        border: const Border(
+          top: BorderSide(color: AppColors.gray100, width: 0.5),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.gray900.withValues(alpha: 0.06),
+            blurRadius: 16,
+            offset: const Offset(0, -4),
+          ),
+        ],
       ),
       child: SafeArea(
         top: false,
