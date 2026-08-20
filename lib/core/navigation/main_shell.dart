@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wereat/core/router/app_routes.dart';
 import 'package:wereat/core/theme/app_colors.dart';
 
 /// Shell con bottom nav (Mapa/Grupos/+/Lista/Perfil) para la sección
-/// post-login. El botón central no es una pestaña: dispara la acción de
-/// agregar lugar (placeholder por ahora).
+/// post-login. El botón central no es una pestaña: abre la pantalla de
+/// agregar lugar.
 class MainShell extends StatelessWidget {
   const MainShell({super.key, required this.navigationShell});
 
   final StatefulNavigationShell navigationShell;
 
   void _addPlace(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Agregar lugar: próximamente')),
-    );
+    context.push(AppRoutes.addPlace);
   }
 
   @override

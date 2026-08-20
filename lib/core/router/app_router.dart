@@ -8,6 +8,7 @@ import 'package:wereat/features/auth/presentation/pages/login_page.dart';
 import 'package:wereat/features/auth/presentation/pages/register_page.dart';
 import 'package:wereat/features/auth/presentation/providers/auth_providers.dart';
 import 'package:wereat/features/groups/presentation/pages/groups_page.dart';
+import 'package:wereat/features/map/presentation/pages/add_place_page.dart';
 import 'package:wereat/features/map/presentation/pages/map_page.dart';
 import 'package:wereat/features/places/presentation/pages/places_list_page.dart';
 import 'package:wereat/features/profile/presentation/pages/profile_page.dart';
@@ -46,6 +47,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.forgotPassword,
         builder: (context, state) => const ForgotPasswordPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.addPlace,
+        builder: (context, state) => const AddPlacePage(),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
